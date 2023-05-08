@@ -1,9 +1,14 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 import '../../components/textfield.dart';
 import '../../constants/constants.dart';
 import '../../controller/login_controller.dart';
+import '../../config/config.dart' as config;
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({Key? key}) : super(key: key);
@@ -11,25 +16,25 @@ class LoginScreen extends StatelessWidget {
   // final authController = Get.find<AuthController>();
   final LoginController controller = Get.put(LoginController());
 
-  // static const storage = FlutterSecureStorage();
+  static const storage = FlutterSecureStorage();
 
   @override
   Widget build(BuildContext context) {
-    // void login(loginid, passwd) async {
-    //   var result = await http.get(
-    //     Uri.parse(
-    //         '${config.serverUrl}/api/jwt?loginid=$loginid&passwd=$passwd'),
-    //   );
-    //   if (result.statusCode == 200) {
-    //     final parsed = json.decode(result.body);
-    //     if (parsed['code'] == 'ok') {
-    //       authController.authenticated = true;
-    //       await storage.write(key: 'token', value: 'bearer ${parsed['token']}');
-    //       await storage.write(key: 'login', value: 'id');
-    //       await Get.offAllNamed("/main");
-    //     }
-    //   } else {}
-    // }
+    void login(loginid, passwd) async {
+      var result = await http.get(
+        Uri.parse(
+            '${config.serverUrl}/api/jwt?loginid=$loginid&passwd=$passwd'),
+      );
+      if (result.statusCode == 200) {
+        final parsed = json.decode(result.body);
+        if (parsed['code'] == 'ok') {
+          // authController.authenticated = true;
+          await storage.write(key: 'token', value: 'bearer ${parsed['token']}');
+          await storage.write(key: 'login', value: 'id');
+          // await Get.offAllNamed("/main");
+        }
+      } else {}
+    }
 
     return Scaffold(
       body: Padding(
@@ -73,8 +78,8 @@ class LoginScreen extends StatelessWidget {
                 borderRadius: BorderRadius.circular(10.0),
                 child: MaterialButton(
                   onPressed: () {
-                    // login(
-                    //     controller.txtLoginid.text, controller.txtPasswd.text);
+                    login(
+                        controller.txtLoginid.text, controller.txtPasswd.text);
                   },
                   minWidth: 200.0,
                   height: 42.0,
