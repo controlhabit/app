@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
@@ -38,14 +39,11 @@ class LoginScreen extends StatelessWidget {
 
     return Scaffold(
       body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 24.0),
+        padding: const EdgeInsets.fromLTRB(24, 300, 24, 0),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          // mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const SizedBox(
-              height: 48.0,
-            ),
             MyTextField(
                 controller: controller.txtLoginid,
                 decoration: kTextFieldDecoration,
@@ -63,17 +61,14 @@ class LoginScreen extends StatelessWidget {
               prefixIcon: const Icon(Icons.lock),
               obscureText: true,
             ),
-            const SizedBox(
-              height: 24.0,
-            ),
             // const Text(
             //   '아이디를 확인해 주세요.',
             //   style: TextStyle(color: Colors.red),
             // ),
             Padding(
-              padding: const EdgeInsets.symmetric(vertical: 16.0),
+              padding: const EdgeInsets.only(top: 40.0),
               child: Material(
-                elevation: 5.0,
+                elevation: 2.0,
                 color: Colors.lightBlueAccent,
                 borderRadius: BorderRadius.circular(10.0),
                 child: MaterialButton(
@@ -82,11 +77,76 @@ class LoginScreen extends StatelessWidget {
                         controller.txtLoginid.text, controller.txtPasswd.text);
                   },
                   minWidth: 200.0,
-                  height: 42.0,
+                  height: 55.0,
                   child: const Text('LOGIN',
                       style:
                           TextStyle(color: Color.fromARGB(255, 255, 255, 255))),
                 ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 150.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                        fixedSize: const Size(200, 50),
+                        textStyle: const TextStyle(fontSize: 15)),
+                    onPressed: () {},
+                    child: const Text('Google로 로그인',
+                        style: TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
+                  ),
+                  const SizedBox(
+                    height: 8.0,
+                  ),
+                  OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                        fixedSize: const Size(200, 50),
+                        textStyle: const TextStyle(fontSize: 15)),
+                    onPressed: () {},
+                    child: const Text('Apple로 로그인',
+                        style: TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
+                  ),
+                  const SizedBox(
+                    height: 8.0,
+                  ),
+                  OutlinedButton(
+                    style: OutlinedButton.styleFrom(
+                        fixedSize: const Size(200, 50),
+                        textStyle: const TextStyle(fontSize: 15)),
+                    onPressed: () {},
+                    child: const Text('Naver로 로그인',
+                        style: TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(top: 10.0),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  RichText(
+                    text: TextSpan(
+                      children: [
+                        const TextSpan(
+                            text: 'CONTOL 처음이신가요?  ',
+                            style:
+                                TextStyle(color: Color.fromARGB(255, 0, 0, 0))),
+                        TextSpan(
+                            text: '회원가입',
+                            recognizer: TapGestureRecognizer()
+                              ..onTapDown = (details) {
+                                print(details.globalPosition);
+                              },
+                            style:
+                                const TextStyle(color: Colors.lightBlueAccent)),
+                      ],
+                    ),
+                  ),
+                ],
               ),
             ),
           ],
