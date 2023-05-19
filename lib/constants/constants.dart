@@ -2,17 +2,20 @@ import 'package:flutter/material.dart';
 
 var color = Colors.blueAccent;
 
-var kTextFieldDecoration = InputDecoration(
-  contentPadding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
-  border: const OutlineInputBorder(
+var kTextFieldDecoration = const InputDecoration(
+  contentPadding: EdgeInsets.symmetric(vertical: 20.0, horizontal: 20.0),
+  border: OutlineInputBorder(
     borderRadius: BorderRadius.all(Radius.circular(10)),
+    borderSide: BorderSide.none,
   ),
   enabledBorder: OutlineInputBorder(
-    borderSide: BorderSide(color: color, width: 1.0),
-    borderRadius: const BorderRadius.all(Radius.circular(10)),
-  ),
-  focusedBorder: const OutlineInputBorder(
-    borderSide: BorderSide(color: Colors.blueAccent, width: 2.0),
+    borderSide: BorderSide.none,
     borderRadius: BorderRadius.all(Radius.circular(10)),
   ),
+  focusedBorder: OutlineInputBorder(
+    borderSide: BorderSide.none,
+    borderRadius: BorderRadius.all(Radius.circular(10)),
+  ),
+  filled: true,
+  // fillColor: Color(0x0008c90d),
 );

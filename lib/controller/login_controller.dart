@@ -12,6 +12,6 @@ class LoginController extends GetxController {
   String get passwd => _passwd.value;
   set passwd(value) => _passwd.value = value;
 
-  final txtLoginid = TextEditingController();
+  final txtEmail = TextEditingController();
   final txtPasswd = TextEditingController();
 }
