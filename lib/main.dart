@@ -1,3 +1,4 @@
+import 'package:controlhabit/screens/login/signup_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:controlhabit/screens/login/login_screen.dart';
 // import 'package:flutter_component/screens/main_screen.dart';
@@ -25,6 +26,10 @@ void main() {
         GetPage(
             name: "/login",
             page: () => LoginScreen(),
+            transition: Transition.fade),
+        GetPage(
+            name: "/signup",
+            page: () => SignupScreen(),
             transition: Transition.fade),
         // GetPage(
         //     name: "/main",
